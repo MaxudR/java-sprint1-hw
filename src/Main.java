@@ -5,6 +5,13 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        StepTracker stepTracker = new StepTracker();
+        System.out.println("-------");
+        System.out.println(stepTracker.months[1].countSteps[1]);
+        System.out.println("-------");
+
+        // создать объекты
+
         while (true) {
             printMenu();
             int command = scanner.nextInt();
@@ -15,11 +22,15 @@ public class Main {
                 System.out.println("За какой день вы хотите ввести количество шагов? Введите число, от 1 до 30, соответствующее дню месяца");
                 int day = scanner.nextInt();
                 System.out.println("Введите количество шагов");
-                double countStep = scanner.nextDouble();
+                int countStep = scanner.nextInt();
+                stepTracker.saveCountStep(month,day,countStep);
             } else if (command == 2) {
-
+                System.out.println("За какой месяц текущего года вы хотите вывести статистику? Введите число, от 0 до 11, соответствующее месяцу года");
+                int month = scanner.nextInt();
+                stepTracker.monthStat(month);
             } else if (command == 3) {
-
+                System.out.println("Введите количество шагов");
+                stepTracker.countGoalStep = scanner.nextInt();
             } else if (command == 4) {
                 System.out.println("Выход из приложения");
                 break;
