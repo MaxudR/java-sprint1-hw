@@ -45,7 +45,7 @@ public class Main {
                         step = scanner.nextInt();
                     }
                 }
-                stepTracker.saveStep(month,day, step);
+                stepTracker.saveStep(month, day, step);
             } else if (command == 2) {
                 System.out.println("За какой месяц текущего года вы хотите вывести статистику? Введите число, от 0 до 11, соответствующее месяцу года");
                 month = scanner.nextInt();

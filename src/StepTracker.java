@@ -34,7 +34,7 @@ public class StepTracker {
          */
     }
 
-    class stepPerDay {
+    class stepPerDay { //??? тут варнинг Inner class 'stepPerDay' may be 'static', нипанятна
         int[] steps = new int[30];
     }
 
@@ -84,7 +84,7 @@ public class StepTracker {
         System.out.println("Лучшая серия: " + daysGoal);
     }
 
-    void setGoalStep (int step, Scanner scanner) {
+    void setGoalStep(int step, Scanner scanner) {
         while (true) {
             if (step > 0) {
                 goalStep = step;
