@@ -4,33 +4,65 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
         StepTracker stepTracker = new StepTracker();
-        System.out.println("-------");
-        System.out.println(stepTracker.months[1].countSteps[1]);
-        System.out.println("-------");
+        int command;
 
-        // создать объекты
-
-        while (true) {
+        while (true) { //??? как ограничить ввод пользователем String и double ???
             printMenu();
-            int command = scanner.nextInt();
+            command = scanner.nextInt();
+            int step;
+            int month;
+            int day;
 
             if (command == 1) {
                 System.out.println("За какой месяц текущего года вы хотите ввести количество шагов? Введите число, от 0 до 11, соответствующее месяцу года");
-                int month = scanner.nextInt();
+                month = scanner.nextInt();
+                while (true) { //???типа дублирование кода и загромождение main??? Выделить в отдельные методы?
+                    if (month >= 0 & month <= 11) {
+                        break;
+                    } else {
+                        System.out.println("Пожалуста, введите число, от 0 до 11: ");
+                        month = scanner.nextInt();
+                    }
+                }
                 System.out.println("За какой день вы хотите ввести количество шагов? Введите число, от 1 до 30, соответствующее дню месяца");
-                int day = scanner.nextInt();
+                day = scanner.nextInt();
+                while (true) {
+                    if (day >= 1 & day <= 30) {
+                        break;
+                    } else {
+                        System.out.println("Пожалуста, введите число, от 1 до 30: ");
+                        day = scanner.nextInt();
+                    }
+                }
                 System.out.println("Введите количество шагов");
-                int countStep = scanner.nextInt();
-                stepTracker.saveCountStep(month,day,countStep);
+                step = scanner.nextInt();
+                while (true) {
+                    if (step > 0) {
+                        break;
+                    } else {
+                        System.out.println("Пожалуста, введите положительное целое число: ");
+                        step = scanner.nextInt();
+                    }
+                }
+                stepTracker.saveStep(month,day, step);
             } else if (command == 2) {
                 System.out.println("За какой месяц текущего года вы хотите вывести статистику? Введите число, от 0 до 11, соответствующее месяцу года");
-                int month = scanner.nextInt();
-                stepTracker.monthStat(month);
+                month = scanner.nextInt();
+                while (true) {
+                    if (month >= 0 & month <= 11) {
+                        break;
+                    } else {
+                        System.out.println("Пожалуста, введите число, от 0 до 11: ");
+                        month = scanner.nextInt();
+                    }
+                }
+                stepTracker.printMonthStat(month);
             } else if (command == 3) {
+                System.out.println("Текущая цель по количеству шагов в день: " + stepTracker.goalStep);
                 System.out.println("Введите количество шагов");
-                stepTracker.countGoalStep = scanner.nextInt();
+                step = scanner.nextInt();
+                stepTracker.setGoalStep(step, scanner);
             } else if (command == 4) {
                 System.out.println("Выход из приложения");
                 break;
