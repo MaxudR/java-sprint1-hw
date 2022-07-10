@@ -1,13 +1,13 @@
 public class Converter {
-    int cm;
-    int cal;
+    static final double KM = 75 * 0.00001;
+    static final double KCAL = 50 * 0.001;
 
-    int convertStepToCm(int countStep) {
-        return cm = countStep * 75;
+    double convertStepToCm(int countStep) {
+        return countStep * KM;
     }
 
-    int convertStepToCal(int countStep) {
-        return cal = countStep * 50;
+    double convertStepToCal(int countStep) {
+        return countStep * KCAL;
     }
 
 }

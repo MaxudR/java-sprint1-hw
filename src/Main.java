@@ -20,30 +20,30 @@ public class Main {
                 while (true) { //???типа дублирование кода и загромождение main??? Выделить в отдельные методы?
                     if (month >= 0 & month <= 11) {
                         break;
-                    } else {
-                        System.out.println("Пожалуста, введите число, от 0 до 11: ");
-                        month = scanner.nextInt();
                     }
+                    System.out.println("Пожалуста, введите число, от 0 до 11: ");
+                    month = scanner.nextInt();
+
                 }
                 System.out.println("За какой день вы хотите ввести количество шагов? Введите число, от 1 до 30, соответствующее дню месяца");
                 day = scanner.nextInt();
                 while (true) {
                     if (day >= 1 & day <= 30) {
                         break;
-                    } else {
-                        System.out.println("Пожалуста, введите число, от 1 до 30: ");
-                        day = scanner.nextInt();
                     }
+                    System.out.println("Пожалуста, введите число, от 1 до 30: ");
+                    day = scanner.nextInt();
+
                 }
                 System.out.println("Введите количество шагов");
                 step = scanner.nextInt();
                 while (true) {
                     if (step > 0) {
                         break;
-                    } else {
-                        System.out.println("Пожалуста, введите положительное целое число: ");
-                        step = scanner.nextInt();
                     }
+                    System.out.println("Пожалуста, введите положительное целое число: ");
+                    step = scanner.nextInt();
+
                 }
                 stepTracker.saveStep(month, day, step);
             } else if (command == 2) {
@@ -52,10 +52,10 @@ public class Main {
                 while (true) {
                     if (month >= 0 & month <= 11) {
                         break;
-                    } else {
-                        System.out.println("Пожалуста, введите число, от 0 до 11: ");
-                        month = scanner.nextInt();
                     }
+                    System.out.println("Пожалуста, введите число, от 0 до 11: ");
+                    month = scanner.nextInt();
+
                 }
                 stepTracker.printMonthStat(month);
             } else if (command == 3) {

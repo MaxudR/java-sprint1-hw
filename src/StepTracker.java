@@ -2,40 +2,19 @@ import java.util.Scanner;
 
 public class StepTracker {
     int goalStep = 10000;
-    stepPerDay[] months;
+    StepPerDay[] months;
 
-    StepTracker() {
-        months = new stepPerDay[12];
-        for (int i = 0; i < months.length; i++) {
-            months[i] = new stepPerDay();
-        }
-
-        /*
-        //не забыть убрать тестовые данные
-        months[0].steps[0] = 1;
-        months[0].steps[1] = 10;
-        months[0].steps[2] = 11;
-        months[0].steps[3] = 12;
-        months[0].steps[6] = 13;
-        months[0].steps[5] = 14;
-        months[0].steps[8] = 15;
-        months[0].steps[10] = 16;
-        months[0].steps[11] = 17;
-        months[0].steps[12] = 18;
-        months[1].steps[12] = 19;
-        months[1].steps[0] = 18;
-        months[1].steps[2] = 17;
-        months[1].steps[5] = 16;
-        months[2].steps[0] = 15;
-        months[3].steps[0] = 14;
-        months[4].steps[0] = 13;
-        months[5].steps[0] = 12;
-        months[6].steps[0] = 11;
-         */
+    static class StepPerDay {
+        int[] steps = new int[30];
     }
 
-    class stepPerDay { //??? тут варнинг Inner class 'stepPerDay' may be 'static', нипанятна
-        int[] steps = new int[30];
+    StepTracker() {
+        months = new StepPerDay[12];
+        for (int i = 0; i < months.length; i++) {
+            months[i] = new StepPerDay();
+        }
+
+
     }
 
     void saveStep(int month, int day, int step) {
@@ -44,11 +23,10 @@ public class StepTracker {
 
     void printMonthStat(int month) {
         int sum = 0;
-        double km;
-        double kcal;
         Converter converter = new Converter();
         int daysGoal = 0;
         int tempDaysGoal = 0;
+        int max = 0;
 
         System.out.println("Количество пройденных шагов по дням:");
         for (int i = 0; i < months[month].steps.length - 1; i++) {
@@ -63,13 +41,18 @@ public class StepTracker {
         }
         System.out.println("Общее количество шагов за месяц: " + sum);
 
+        for (int i = 0; i < months[month].steps.length; i++) {
+            if (months[month].steps[i] > max) {
+                max = months[month].steps[i];
+            }
+        }
+        System.out.println("Максимальное пройденное количество шагов в месяце: " + max);
+
         System.out.println("Среднее количество шагов за месяц: " + (sum / months[month].steps.length));
 
-        km = converter.convertStepToCm(sum) * 0.00001;
-        System.out.println("Пройденная дистанция(в км) за месяц: " + km); //???округлять???
+        System.out.println("Пройденная дистанция(в км) за месяц: " + converter.convertStepToCm(sum)); //???округлять???
 
-        kcal = converter.convertStepToCal(sum) * 0.001;
-        System.out.println("Количество сожжённых килокалорий за месяц: " + kcal);
+        System.out.println("Количество сожжённых килокалорий за месяц: " + converter.convertStepToCal(sum));
 
         for (int i = 0; i < months[month].steps.length; i++) {
             if (months[month].steps[i] >= goalStep) {
@@ -90,10 +73,10 @@ public class StepTracker {
                 goalStep = step;
                 System.out.println("Обновленная цель по количеству шагов в день: " + goalStep);
                 return;
-            } else {
-                System.out.println("Пожалуста, введите положительное целое число: ");
-                step = scanner.nextInt();
             }
+            System.out.println("Пожалуста, введите положительное целое число: ");
+            step = scanner.nextInt();
+
         }
 
     }
