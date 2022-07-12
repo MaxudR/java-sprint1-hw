@@ -9,18 +9,19 @@ public class StepTracker {
     }
 
     StepTracker() {
-        months = new StepPerDay[12];
-        for (int i = 0; i < months.length; i++) {
+        months = new StepPerDay[12]; // создаем массив типа StepPerDay. Получается 12 месяцев
+        for (int i = 0; i < months.length; i++) { //присваиваем каждому элементу массива  экземпляр класса. Получается 12 месяцев по 30 дней
             months[i] = new StepPerDay();
         }
 
 
     }
 
-    void saveStep(int month, int day, int step) {
+    void saveStep(int month, int day, int step) { //сохраняем количество шагов в определенный месяц и день
         months[month].steps[day - 1] = step;
     }
 
+    // выводим статистику за месяц
     void printMonthStat(int month) {
         int sum = 0;
         Converter converter = new Converter();
@@ -67,6 +68,7 @@ public class StepTracker {
         System.out.println("Лучшая серия: " + daysGoal);
     }
 
+    //изменяем цель по количеству шагов в день
     void setGoalStep(int step, Scanner scanner) {
         while (true) {
             if (step > 0) {
